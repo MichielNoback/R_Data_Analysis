@@ -1,0 +1,153 @@
+- Class: meta
+  Course: R Data Analysis
+  Lesson: R as calculator
+  Author: Michiel Noback
+  Type: Standard
+  Organization: Hanze University of Applied Science
+  Version: 2.2.21
+
+- Class: text
+  Output: In this lesson, we will get to know R as a simple calculator.
+
+- Class: text
+  Output: If at any point you'd like more information on a particular topic related
+    to R, you can type help.start() at the prompt, which will open a menu of resources
+    within RStudio. Type info() to get help on navigating this lesson. 
+    Alternatively, use "?function_name" when you want to know how a function works.
+
+- Class: cmd_question
+  Output: In its simplest form, R can be used as an interactive calculator. Type
+    5 + 7 and press Enter.
+  CorrectAnswer: 5 + 7
+  AnswerTests: omnitest(correctExpr='5 + 7')
+  Hint: Hint -- Type 5 + 7 and press Enter.
+
+- Class: cmd_question
+  Output: Calculate 42 times 3.
+  CorrectAnswer: 42 * 3
+  AnswerTests: any_of_exprs('42 * 3', '3 * 42')
+  Hint: Hint -- Type 42 * 3 and press Enter. 
+
+- Class: text
+  Output: Whether you use 42*3 or 42 * 3 does not 
+    matter -both are correct- but for readability I strongly advice you to use spaces
+    on both sides of ALL operators!
+
+
+
+- Class: cmd_question
+  Output: Calculate 20 divided by 7.
+  CorrectAnswer: 20 / 7
+  AnswerTests: any_of_exprs('20 / 7', '7 / 20')
+  Hint: Hint -- Type 20 / 7 and press Enter. 
+
+- Class: cmd_question
+  Output: Calculate the remainder of 20 divided by 7.
+  CorrectAnswer: 20 %% 7
+  AnswerTests: omnitest(correctExpr='20 %% 7')
+  Hint: Hint -- Type 20 %% 7 and press Enter. 
+
+- Class: cmd_question
+  Output: Calculate 13 divided by 3, rounded down.
+  CorrectAnswer: floor(13 / 3)
+  AnswerTests: omnitest(correctExpr='floor(13 / 3)')
+  Hint: Hint -- Type floor(13 / 3) and press Enter. 
+
+- Class: cmd_question
+  Output: Calculate 13 divided by 3, rounded up.
+  CorrectAnswer: ceiling(13 / 3)
+  AnswerTests: omnitest(correctExpr='ceiling(13 / 3)')
+  Hint: Hint -- Type ceiling(13 / 3) and press Enter. 
+
+- Class: cmd_question
+  Output: Calculate 5 divided by 2, rounded to integer.
+  CorrectAnswer: round(5 / 2)
+  AnswerTests: omnitest(correctExpr='round(5 / 2)')
+  Hint: Hint -- Type round(5 / 2) and press Enter. 
+
+
+
+- Class: cmd_question
+  Output: Calculate 7 divided by 2, rounded to integer.
+  CorrectAnswer: round(7 / 2)
+  AnswerTests: omnitest(correctExpr='round(7 / 2)')
+  Hint: Hint -- Type round(7 / 2) and press Enter. 
+
+- Class: mult_question
+  Output: The rounding of 5 / 2 and 7 / 2 seem to behave 
+    differently. 5 / 2 was rounded down to 2 and 7 / 2 was
+    rounded up to 4. Can you explain this behaviour?
+  CorrectAnswer: 0.5 is rounded to the nearest even number
+  AnswerChoices: this is an error in R; 0.5 is rounded to the nearest even number;
+    it has to do with how floating point numbers are represented in bits
+  AnswerTests: omnitest(correctVal='0.5 is rounded to the nearest even number')
+  Hint: We round 0.5 to the nearest even digit.
+
+- Class: cmd_question
+  Output: Calculate 13 divided by 7, rounded to two decimals.
+  CorrectAnswer: round(13 / 7, 2)
+  AnswerTests: omnitest(correctExpr='round(13 / 7, 2)')
+  Hint: Hint -- Type round(13 / 7, 2) and press Enter. 
+
+- Class: cmd_question
+  Output: Calculate the square root of 144.
+  CorrectAnswer: sqrt(144)
+  AnswerTests: omnitest(correctExpr='sqrt(144)')
+  Hint: Hint -- use the sqrt() function. 
+
+- Class: cmd_question
+  Output: Calculate 15 squared.
+  CorrectAnswer: 15 ^ 2
+  AnswerTests: any_of_exprs('15 ^ 2', '15 ** 2')
+  Hint: Hint -- use the ^ or the ** operator. 
+
+
+
+- Class: text
+  Output: When you perform calculations, R simply prints the result of your calculation,
+    as any calculator would do. 
+    However, R is a programming language and in this context you may want to store the result 
+    for later use.
+
+- Class: text
+  Output: 'To store some data (e.g. the result of a computation), you place it in a variable
+    by using the assignment operator, which is just a ''less than'' symbol followed by 
+    a ''minus'' sign. It looks like this: <-'
+
+- Class: cmd_question
+  Output: To assign the result of 5 + 7 to a new variable called x, you type x <-
+    5 + 7. This can be read as 'x gets 5 plus 7'. Give it a try now.
+  CorrectAnswer: x <- 5 + 7
+  AnswerTests: any_of_exprs('x <- 5 + 7', 'x <- 7 + 5')
+  Hint: Type x <- 5 + 7. It's important to include a single space on each side of
+    the assignment operator, but do NOT put a space between the `<` and the `-` that
+    form the arrow.
+
+- Class: text
+  Output: You'll notice that R did not print the result of 12 this time. When you
+    use the assignment operator, R assumes that you don't want to see the result immediately,
+    but rather that you intend to use the result for something else later on.
+
+- Class: cmd_question
+  Output: To view the contents of the variable x, just type x and press Enter. Try
+    it now.
+  CorrectAnswer: x
+  AnswerTests: omnitest(correctExpr='x')
+  Hint: Type x and press Enter. This will automatically print the value of x.
+
+
+- Class: cmd_question
+  Output: Now, store the result of x - 3 in a new variable called y.
+  CorrectAnswer: y <- x - 3
+  AnswerTests: omnitest(correctExpr='y <- x - 3')
+  Hint: Type y <- x - 3 and press Enter. Whether you use x - 3 or x-3 is personal
+    preference, but it's good habit to include a space on either side of the assignment
+    operator.
+
+- Class: cmd_question
+  Output: What is the value of y? Type y to find out.
+  CorrectAnswer: 'y'
+  AnswerTests: omnitest(correctExpr='y')
+  Hint: Type y and press Enter.
+
+

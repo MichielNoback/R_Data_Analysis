@@ -1,0 +1,144 @@
+- Class: meta
+  Course: R Data Analysis
+  Lesson: Working with Vectors
+  Author: Michiel Noback
+  Type: Standard
+  Organization: Hanze University of Applied Science
+  Version: 2.2.21
+
+
+
+- Class: text
+  Output: In this lesson, we will look at the R atomic types for numeric 
+    values and character data. Moreover, we will explore the most important
+    of R composite data types, the vector.
+
+- Class: text
+  Output: Although R accepts both '<-' and '=' as assignment operators, you should
+    always use '<-' in this course otherwise the test will fail.
+
+- Class: text
+  Output: If at any point you'd like more information on a particular topic related
+    to R, you can type help.start() at the prompt, which will open a menu of resources
+    within RStudio. Type info() to get help on navigating this lesson. 
+    Alternatively, use "?function_name" when you want to know how a function works.
+
+- Class: cmd_question
+  Output: Create a vector holding the numbers 2, 4, 7, 1 and 5, and assign
+    it to a variable called "my.numbers".
+  CorrectAnswer: my.numbers <- c(2, 4, 7, 1, 5)
+  AnswerTests: omnitest(correctExpr='my.numbers <- c(2, 4, 7, 1, 5)')
+  Hint: Hint -- use the concatenate function "c()"
+
+- Class: cmd_question
+  Output: Create a new vector, squared, that contains the numbers from my.numbers,
+    but squared.
+  CorrectAnswer: squared <- my.numbers ^ 2
+  AnswerTests: any_of_exprs('squared <- my.numbers ^ 2', 'squared <- my.numbers ** 2')
+  Hint: Hint -- use the "^" or "**" operators
+
+
+
+- Class: cmd_question
+  Output: Create a new vector, squared, that contains the numbers from my.numbers,
+    but squared.
+  CorrectAnswer: squared <- my.numbers ^ 2
+  AnswerTests: any_of_exprs('squared <- my.numbers ^ 2', 'squared <- my.numbers ** 2')
+  Hint: Hint -- use the "^" or "**" operators
+
+- Class: text
+  Output: To solve the next question you need to apply Boolean tests to get Boolean
+    values. For example,  '4 < 5' returns a Boolean (I expect it to be True). Lets give
+    it a try on my.numbers
+
+- Class: cmd_question
+  Output: Generate a vector with Booleans values, each indicating whether the 
+    corresponding value in my.numbers is lower than 4. Do NOT assign it to anything.
+  CorrectAnswer: my.numbers < 4
+  AnswerTests: omnitest(correctExpr='my.numbers < 4')
+  Hint: Hint -- type "my.numbers < 4" and hit Enter
+
+- Class: cmd_question
+  Output: Now lets take it up a notch. Generate a vector holding the remainder of a 
+    division by 3 of all numbers in my.numbers. Do NOT assign it to anything.
+  CorrectAnswer: my.numbers %% 3
+  AnswerTests: omnitest(correctExpr='my.numbers %% 3')
+  Hint: Hint -- use the remainder operator %%
+
+- Class: text
+  Output: The next question is really tricky but sometimes a challenge is the 
+    right thing to get you motivated.
+
+
+
+- Class: cmd_question
+  Output: Create a new, logical, vector called "is.even", that holds a Boolean value
+    for each number in "my.numbers", indicating whether the number in "my.numbers"
+    is an even number or not.
+  CorrectAnswer: is.even <- my.numbers %% 2 == 0
+  AnswerTests: omnitest(correctExpr='is.even <- my.numbers %% 2 == 0')
+  Hint: Hint -- use the modulo operator "%%" to get the remainder of a division by 2 
+    and test for equality to 0 
+
+- Class: cmd_question
+  Output: Create a vector, called "my.messages", with 9 empty strings.
+  CorrectAnswer: my.messages <- character(9)
+  AnswerTests: omnitest(correctExpr='my.messages <- character(9)')
+  Hint: Hint -- use the character() constructor for vectors.
+
+- Class: cmd_question
+  Output: Put the string "hello, world"" in the 5th position of my.messages.
+  CorrectAnswer: my.messages[5] <- "hello, world"
+  AnswerTests: omnitest(correctExpr='my.messages[5] <- "hello, world"')
+  Hint: Hint -- type 'my.messages[5] <- "hello, world"' and hit Enter.
+
+- Class: cmd_question
+  Output: Create a factor with the values "blue", "red", "blue", "green", "blue", "red"
+    and assign it to variable "my.colors".
+  CorrectAnswer: my.colors <- factor(c("blue", "red", "blue", "green", "blue", "red"))
+  AnswerTests: any_of_exprs('my.colors <- factor(c("blue", "red", "blue", "green", "blue", "red"))', 'my.colors <- as.factor(c("blue", "red", "blue", "green", "blue", "red"))')
+  Hint: Hint -- use 'factor(c(...))' or 'as.factor(c(...))'.
+
+- Class: cmd_question
+  Output: Plot the color frequencies in my.colors using the function 'plot()'.
+  CorrectAnswer: plot(my.colors)
+  AnswerTests: omnitest(correctExpr='plot(my.colors)')
+  Hint: Hint -- type 'plot(my.colors)' and hit Enter.
+
+
+
+- Class: cmd_question
+  Output: Create a vector with the numbers 6 through 10 in it - as efficient as
+    possible. Do NOT assign it to a variable.
+  CorrectAnswer: 6:10
+  AnswerTests: omnitest(correctExpr='6:10')
+  Hint: Hint -- type '6:10' and hit Enter. 
+
+- Class: cmd_question
+  Output: Create a vector with the values 1 2 3 1 2 3 1 2 3  - as efficient as
+    possible.
+  CorrectAnswer: rep(1:3, times = 3)
+  AnswerTests: any_of_exprs('rep(c(1, 2, 3), times = 3)', 'rep(1:3, times = 3)', 'rep(seq(1,3), times = 3)')
+  Hint: Hint -- use function 'rep()'. 
+
+- Class: cmd_question
+  Output: Create a vector with the values 1 1 1 2 2 2 3 3 3 1 1 1 2 2 2 3 3 3 1 1 1 2 2 2 3 3 3
+    without exactly typing this sequence.
+  CorrectAnswer: rep(1:3, times = 3, each = 3)
+  AnswerTests: omnitest(correctVal='rep(1:3, times = 3, each = 3)')
+  Hint: Hint -- use function 'rep()' with both argumens 'times' and 'each'. 
+
+- Class: cmd_question
+  Output: '[Challenge question] create a vector with the values 1 1 1 2 2 2 4 4 5 5 6 6 4 4 5 5 6 6 without 
+    exactly typing this sequence.'
+  CorrectAnswer: c(rep(1:2, each = 3), rep(4:6, times = 2, each = 2))
+  AnswerTests: omnitest(correctVal='c(rep(1:2, each = 3), rep(4:6, times = 2, each = 2))')
+  Hint: Hint -- use a combination of functions 'c()' and 'rep()'. 
+
+- Class: cmd_question
+  Output: Create a vector with the sequence of numbers 3.5, 3.7, 3.9, 4.1, 4.3, 4.5, 4.7 
+    in it, but without exactly typing this sequence.
+  CorrectAnswer: seq(3.5, 4.7, by=0.2)
+  AnswerTests: omnitest(correctVal='seq(3.5, 4.7, by=0.2)')
+  Hint: Hint -- use a function 'seq()'. 
+
