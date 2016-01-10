@@ -1,0 +1,126 @@
+- Class: meta
+  Course: R Data Analysis
+  Lesson: Complex Datatypes
+  Author: your name goes here
+  Type: Standard
+  Organization: your organization's name goes here
+  Version: 2.2.21
+
+
+- Class: text
+  Output: In this lesson, we will explore the more complex datatypes that R 
+    provides. The most interesting of these is of course the Dataframe type. However, 
+    we will also visit the matrix, list and factor types.
+
+- Class: text
+  Output: "First, let's fiddle around with the matrix type. A matrix is a 
+    collection of data elements arranged in a two-dimensional rectangular
+    layout."
+
+- Class: cmd_question
+  Output: You will need the data in vector "my.data". Go and have a look at its contents.
+  CorrectAnswer: my.data
+  AnswerTests: omnitest(correctExpr='my.data')
+  Hint: Hint -- type "my.data" and hit Enter
+
+- Class: cmd_question
+  Output: Using the vector "my.data" to create a matrix of 2 rows and 6 columns where
+    the top row holds the first five numbers of my.data. Assign it to variabe "my.matrix".
+  CorrectAnswer: my.matrix <- matrix(my.data, nrow = 2, ncol = 6, byrow = TRUE)
+  AnswerTests: test_assignment("my.matrix", matrix(my.data, nrow = 2, ncol = 6, byrow = TRUE))
+  Hint: Hint -- use the function "matrix()"
+
+- Class: cmd_question
+  Output: Now you have matrix "my.matrix", let me see what you can do with it. Transform 
+    its dimensions to a 3 row by 4 column matrix.
+  CorrectAnswer: dim(my.matrix) <- c(3, 4)
+  AnswerTests: omnitest(correctExpr='dim(my.matrix) <- c(3, 4)')
+  Hint: Hint -- use the dim() function on the matrix
+
+
+
+- Class: cmd_question
+  Output: In your working environment, you will find vector "student.performance".
+    It is a simple character vector. Have a look at the frequencies of the different 
+    words in it.
+  CorrectAnswer: table(student.performance)
+  AnswerTests: omnitest(correctExpr='table(student.performance)')
+  Hint: Hint -- use the table() function.
+
+- Class: cmd_question
+  Output: 'If you want to plot this vector, you will need to transform the vector to
+    a factor. You can do this now, and while you are at it, give it the ordered levels
+    "terrible < poor < good < excellent". Note that the level "terrible" does not 
+    actually occur in the character vector'
+  CorrectAnswer: student.performance <- factor(student.performance, levels = c("terrible", "poor", "good", "excellent"), ordered = TRUE)
+  AnswerTests: omnitest(correctExpr='student.performance <- factor(student.performance, levels = c("terrible", "poor", "good", "excellent"), ordered = TRUE)')
+  Hint: Hint -- type 'student.performance <- factor(student.performance, levels = c("terrible", "poor", "good", "excellent"), ordered = TRUE)' and hit Enter.
+
+- Class: text
+  Output: Creating orderd factors is a very common task in R. The ingredients
+    are the "factor()" constructor, and its arguments "levels = " and "ordered = "
+
+- Class: cmd_question
+  Output: Tabulate student.performance again; and notice the changed representation.
+  CorrectAnswer: table(student.performance)
+  AnswerTests: omnitest(correctExpr='table(student.performance)')
+  Hint: Hint -- use the table() function.
+
+- Class: cmd_question
+  Output: Now plot it. You will see that ordering is really useful when plotting factor data.
+    Of course you should only order when relevant!
+  CorrectAnswer: plot(student.performance)
+  AnswerTests: omnitest(correctExpr='plot(student.performance)')
+  Hint: Hint -- use the plot() function.
+
+
+
+
+- Class: cmd_question
+  Output: Now change the ordering of the student.performance factor levels from 
+    "terrible < poor < good < excellent" to "excellent < good < poor < terrible"
+  CorrectAnswer: student.performance <- ordered(student.performance, levels = c("excellent", "good", "poor", "terrible"))
+  AnswerTests: test_assignment("student.performance", ordered(student.performance, levels = c("excellent", "good", "poor", "terrible")))
+  Hint: Hint -- type 'sum(student.performance >= "good")' and hit Enter.
+
+- Class: cmd_question
+  Output: Determine how many students performed "poor".
+  CorrectAnswer: sum(student.performance == "poor")
+  AnswerTests: omnitest(correctExpr='sum(student.performance == "poor")', correctVal = 5)
+  Hint: Hint -- type 'sum(student.performance >= "good")' and hit Enter.
+
+- Class: cmd_question
+  Output: Determine how many students performed at least "good".
+  CorrectAnswer: sum(student.performance >= "good")
+  AnswerTests: omnitest(correctExpr='sum(student.performance >= "good")', correctVal = 14)
+  Hint: Hint -- type 'sum(student.performance == "poor")' and hit Enter.
+
+- Class: mult_question
+  Output: "In the two previous questions you have seen the use of sum() on the 
+    result of a Boolean test on a vector. Why is the mechanism behind this use?"
+  AnswerChoices: R knows how to process logical vectors;
+    R knows how to sum TRUE values by using 'length(which(...))' on the logical vector;
+    R can only sum Booleans by coercing TRUE to 1 and FALSE to 0
+  CorrectAnswer: R can only sum Booleans by coercing TRUE to 1 and FALSE to 0
+  AnswerTests: omnitest(correctVal= 'R can only sum Booleans by coercing TRUE to 1 and FALSE to 0')
+  Hint: When you type "TRUE + 1" and hit Enter, you know what I mean.
+
+- Class: text
+  Output: It is time to take things a level higher. We will keep seeing factors, 
+    but more often they are part of higher-level data structures, such as Lists 
+    and Dataframes. First we will explore the list type.
+
+
+
+- Class: cmd_question
+  Output: "Create a list called 'nuc.weights' containing two vectors - a vector
+    with the Nucleotide single letter codes (A, C, G, T) and a vector with their
+    molecular weights (491.2, 467.2, 507.2, 482.2). Make these list elements 
+    accessible through the names 'nucs' and 'weights'"
+  CorrectAnswer: nuc.weights <- list(nucs = c("A", "C", "G", "T"), weights = c(491.2, 467.2, 507.2, 482.2))
+  AnswerTests: test_assignment("nuc.weights", list(nucs = c("A", "C", "G", "T"), weights = c(491.2, 467.2, 507.2, 482.2)))
+  Hint: Hint -- use list construction with named arguments.
+
+
+
+
