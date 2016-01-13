@@ -75,7 +75,6 @@
 
 
 
-
 - Class: cmd_question
   Output: Now change the ordering of the student.performance factor levels from 
     "terrible < poor < good < excellent" to "excellent < good < poor < terrible"
@@ -112,8 +111,22 @@
 
 
 
+- Class: text
+  Output: Almost all programming languages know the (hash)map / dict data structure
+    storing key and value pairs. R does not have a dict, but you could make an 
+    dict-like structure using a list with named elements. Let's have a go at it.
+
+- Class: figure
+  Output: 'For example, if I wanted to create and use a DNA codon translation table, I could do 
+    something like what is shown in the file demoTranslation.R. This file will open in the editor.
+    See if you can figure out what is going on there!'
+  Figure: showTranslation.R
+  FigureType: new
+
+
 - Class: cmd_question
-  Output: "Create a list called 'nuc.weights' containing two vectors - a vector
+  Output: "Create a list called 'nuc.weights' with the named elements 
+  containing two vectors - a vector
     with the Nucleotide single letter codes (A, C, G, T) and a vector with their
     molecular weights (491.2, 467.2, 507.2, 482.2). Make these list elements 
     accessible through the names 'nucs' and 'weights'"
@@ -121,6 +134,9 @@
   AnswerTests: test_assignment("nuc.weights", list(nucs = c("A", "C", "G", "T"), weights = c(491.2, 467.2, 507.2, 482.2)))
   Hint: Hint -- use list construction with named arguments.
 
-
+- Class: text
+  Output: It is time to take things a level higher. We will keep seeing factors, 
+    but more often they are part of higher-level data structures, such as Lists 
+    and Dataframes. First we will explore the list type.
 
 
