@@ -74,25 +74,24 @@
   Hint: Hint -- use the plot() function.
 
 
+- Class: cmd_question
+  Output: Determine how many students performed "poor".
+  CorrectAnswer: sum(student.performance == "poor")
+  AnswerTests: omnitest(correctExpr='sum(student.performance == "poor")', correctVal = 5)
+  Hint: Hint -- type 'sum(student.performance == "poor")' and hit Enter.
+
+- Class: cmd_question
+  Output: Determine how many students performed at least "good".
+  CorrectAnswer: sum(student.performance >= "good")
+  AnswerTests: omnitest(correctExpr='sum(student.performance >= "good")', correctVal = 14)
+  Hint: Hint -- type 'sum(student.performance >= "good")' and hit Enter.
 
 - Class: cmd_question
   Output: Now change the ordering of the student.performance factor levels from 
     "terrible < poor < good < excellent" to "excellent < good < poor < terrible"
   CorrectAnswer: student.performance <- ordered(student.performance, levels = c("excellent", "good", "poor", "terrible"))
   AnswerTests: test_assignment("student.performance", ordered(student.performance, levels = c("excellent", "good", "poor", "terrible")))
-  Hint: Hint -- type 'sum(student.performance >= "good")' and hit Enter.
-
-- Class: cmd_question
-  Output: Determine how many students performed "poor".
-  CorrectAnswer: sum(student.performance == "poor")
-  AnswerTests: omnitest(correctExpr='sum(student.performance == "poor")', correctVal = 5)
-  Hint: Hint -- type 'sum(student.performance >= "good")' and hit Enter.
-
-- Class: cmd_question
-  Output: Determine how many students performed at least "good".
-  CorrectAnswer: sum(student.performance >= "good")
-  AnswerTests: omnitest(correctExpr='sum(student.performance >= "good")', correctVal = 14)
-  Hint: Hint -- type 'sum(student.performance == "poor")' and hit Enter.
+  Hint: Hint -- type 'student.performance <- ordered(student.performance, levels = c("excellent", "good", "poor", "terrible"))' and hit Enter.
 
 - Class: mult_question
   Output: "In the two previous questions you have seen the use of sum() on the 
@@ -107,36 +106,177 @@
 - Class: text
   Output: It is time to take things a level higher. We will keep seeing factors, 
     but more often they are part of higher-level data structures, such as Lists 
-    and Dataframes. First we will explore the list type.
-
-
-
-- Class: text
-  Output: Almost all programming languages know the (hash)map / dict data structure
-    storing key and value pairs. R does not have a dict, but you could make an 
-    dict-like structure using a list with named elements. Let's have a go at it.
-
-- Class: figure
-  Output: 'For example, if I wanted to create and use a DNA codon translation table, I could do 
-    something like what is shown in the file demoTranslation.R. This file will open in the editor.
-    See if you can figure out what is going on there!'
-  Figure: showTranslation.R
-  FigureType: new
+    and Dataframes. First we will explore the list type. List are useful for 
+    storing related vectors of differing types and lengths
 
 
 - Class: cmd_question
-  Output: "Create a list called 'nuc.weights' with the named elements 
-  containing two vectors - a vector
-    with the Nucleotide single letter codes (A, C, G, T) and a vector with their
-    molecular weights (491.2, 467.2, 507.2, 482.2). Make these list elements 
-    accessible through the names 'nucs' and 'weights'"
-  CorrectAnswer: nuc.weights <- list(nucs = c("A", "C", "G", "T"), weights = c(491.2, 467.2, 507.2, 482.2))
-  AnswerTests: test_assignment("nuc.weights", list(nucs = c("A", "C", "G", "T"), weights = c(491.2, 467.2, 507.2, 482.2)))
-  Hint: Hint -- use list construction with named arguments.
+  Output: In your workspace, you will find two vectors 'my.courses' and 'my.grades'.
+    Combine these as named elements into a list called 'my.course.grades' using the
+    names "courses" and "names".
+  CorrectAnswer: my.course.grades <- list(courses = my.courses, grades = my.grades)
+  AnswerTests: test_assignment("my.course.grades", list(courses = my.courses, grades = my.grades))
+  Hint: Hint -- type 'my.course.grades <- list(courses = my.courses, grades = my.grades)' and hit Enter.
+
+- Class: cmd_question
+  Output: Now print the third course from list 'my.course.grades'. 
+  CorrectAnswer: my.course.grades[[1]][3]
+  AnswerTests: omnitest('my.course.grades$courses[3]', "Biochemistry")
+  Hint: Hint -- type 'my.course.grades[[1]][3]' or 'my.course.grades$courses[3]' and hit Enter.
+
+- Class: cmd_question
+  Output: 'Print the second course together with its grade from list "my.course.grades" 
+    like this "Genetics 2 (6.8)". Tip - Use function "paste() ".'
+  CorrectAnswer: paste(my.course.grades[[1]][2], " (", my.course.grades[[2]][2], ")", sep = "")
+  AnswerTests: omnitest('paste(my.course.grades[[1]][2], " (", my.course.grades[[2]][2], ")", sep = "")', "Genetics 2 (6.8)")
+  Hint: Hint -- type 'paste(my.course.grades[[1]][2], " (", my.course.grades[[2]][2], ")", sep = "")' and hit Enter.
+
+- Class: cmd_question
+  Output: Change the grade of Calculus from 3.4 to 4.3 in 'my.course.grades'. 
+  CorrectAnswer: my.course.grades[[2]][1] <- 4.3
+  AnswerTests: omnitest(correctExpr = 'my.course.grades[[2]][1] <- 4.3')
+  Hint: Hint -- type 'my.course.grades[[2]][1] <- 4.3' and hit Enter.
+
+- Class: cmd_question
+  Output: "[Challenge] Find the grade of Labwork in 'my.course.grades',
+    but do NOT use direct access. Instead, use a logical test to find the position of 
+    'Labwork' in the first vector to access the corresponding grade in the second vector."
+  CorrectAnswer: my.course.grades[[2]][ my.course.grades[[1]] == "Labwork" ]
+  AnswerTests: omnitest(correctExpr = 'my.course.grades[[2]][ my.course.grades[[1]] == "Labwork" ]', correctVal = 8.5)
+  Hint: Hint -- type 'my.course.grades[[2]][ my.course.grades[[1]] == "Labwork" ]' and hit Enter.
+
+
 
 - Class: text
-  Output: It is time to take things a level higher. We will keep seeing factors, 
-    but more often they are part of higher-level data structures, such as Lists 
-    and Dataframes. First we will explore the list type.
+  Output: Finally, we arrive at the mother of all datatypes, the Dataframe. 
+    The next few questions deal with the predefined dataframe called "my.curriculum"
 
+- Class: cmd_question
+  Output: Go and have a look at "my.curriculum".
+  CorrectAnswer: my.curriculum
+  AnswerTests: omnitest(correctExpr = 'my.curriculum')
+  Hint: Hint -- type 'my.curriculum' and hit Enter.
+
+- Class: mult_question
+  Output: "When looking at this dataframe, what comment on it seems most correct?"
+  AnswerChoices: It looks a bit like a list with named elements;
+    It looks a bit like a matrix with named columns;
+    It looks a bit like a spreadsheet but without the cells;
+    All of the other comments, but none exactly
+  CorrectAnswer: All of the other comments, but none exactly
+  AnswerTests: omnitest(correctVal= 'All of the other comments, but none exactly')
+  Hint: All of the other comments, but none exactly
+
+- Class: cmd_question
+  Output: Use the correct R function to find out the number of rows in this dataframe.
+  CorrectAnswer: nrow(my.curriculum)
+  AnswerTests: omnitest(correctExpr = 'nrow(my.curriculum)')
+  Hint: Hint -- type 'nrow(my.curriculum)' and hit Enter.
+
+- Class: cmd_question
+  Output: Use the correct R function to find out the number of columns in this dataframe.
+  CorrectAnswer: ncol(my.curriculum)
+  AnswerTests: omnitest(correctExpr = 'ncol(my.curriculum)')
+  Hint: Hint -- type 'ncol(my.curriculum)' and hit Enter.
+
+
+
+- Class: cmd_question
+  Output: Print the contents of the third row.
+  CorrectAnswer: my.curriculum[3, ]
+  AnswerTests: omnitest(correctExpr = 'my.curriculum[3, ]')
+  Hint: Hint -- type 'my.curriculum[3, ]' and hit Enter.
+
+- Class: cmd_question
+  Output: Print the contents of the second column.
+  CorrectAnswer: my.curriculum[, 2]
+  AnswerTests: omnitest(correctExpr = 'my.curriculum[, 2]')
+  Hint: Hint -- type 'my.curriculum[, 2]' and hit Enter.
+
+- Class: cmd_question
+  Output: Print rows 2 through 4.
+  CorrectAnswer: my.curriculum[2:4, ]
+  AnswerTests: omnitest(correctExpr = 'my.curriculum[2:4, ]', correctVal = my.curriculum[c(2, 3, 4), ])
+  Hint: Hint -- type 'my.curriculum[2:4, ]' and hit Enter.
+
+- Class: cmd_question
+  Output: Print the rows with failing grades (below 5.5)
+  CorrectAnswer: my.curriculum[my.curriculum$grade < 5.5, ]
+  AnswerTests: omnitest(correctExpr = 'my.curriculum[my.curriculum$grade < 5.5, ]', correctVal = my.curriculum[my.curriculum$grade < 5.5, ])
+  Hint: Hint -- type 'my.curriculum[my.curriculum$grade < 5.5, ]' and hit Enter.
+
+- Class: cmd_question
+  Output: '[Challenge] Print the rows with courses given by e real professor. Hint: use grep()'
+  CorrectAnswer: my.curriculum[grep("Prof", my.curriculum$teacher), ]
+  AnswerTests: omnitest(correctExpr = 'my.curriculum[grep("Prof", my.curriculum$teacher), ]', correctVal = my.curriculum[grep("Prof", my.curriculum$teacher), ])
+  Hint: Hint -- type 'my.curriculum[grep("Prof", my.curriculum$teacher), ]' and hit Enter.
+
+
+
+- Class: cmd_question
+  Output: 'Calculate the average grade'
+  CorrectAnswer: mean(my.curriculum$grade)
+  AnswerTests: omnitest(correctExpr = 'mean(my.curriculum$grade)', correctVal = mean(my.curriculum$grade))
+  Hint: Hint -- type 'mean(my.curriculum$grade)' and hit Enter.
+
+- Class: cmd_question
+  Output: 'Get the minimum grade'
+  CorrectAnswer: min(my.curriculum$grade)
+  AnswerTests: omnitest(correctExpr = 'min(my.curriculum$grade)', correctVal = min(my.curriculum$grade))
+  Hint: Hint -- type 'min(my.curriculum$grade)' and hit Enter.
+
+- Class: cmd_question
+  Output: 'Create a factor called "attendance", having ordered levels 
+    "never" < "sometimes" < "always" and values 
+    "never", "sometimes", "always", "sometimes", "always". Of course you will need 
+    to fill the factor with appropriate values.'
+  CorrectAnswer: attendance <- factor(c("never", "sometimes", "always", "sometimes", "always"), levels = c("never", "sometimes", "always"), ordered = T)
+  AnswerTests: test_assignment("attendance", factor(c("never", "sometimes", "always", "sometimes", "always"), levels = c("never", "sometimes", "always"), ordered = T))
+  Hint: Hint -- use 'attendance <- factor(...)'.
+
+- Class: cmd_question
+  Output: 'Attach this factor "attendance" to the dataframe my.curriculum using the same name.'
+  CorrectAnswer: my.curriculum$attendance <- attendance
+  AnswerTests: omnitest(correctExpr = 'my.curriculum$attendance <- attendance')
+  Hint: Hint -- type 'my.curriculum$attendance <- attendance' and hit Enter.
+
+- Class: cmd_question
+  Output: 'You will find a second dataframe in your workspace, called 
+    "my.honours.curriculum". Add the rows of this dataframe to the 
+    "my.curriculum" dataframe'
+  CorrectAnswer: my.curriculum <- rbind(my.curriculum, my.honours.curriculum)
+  AnswerTests: omnitest(correctExpr = 'my.curriculum <- rbind(my.curriculum, my.honours.curriculum)')
+  Hint: Hint -- type 'my.curriculum <- rbind(my.curriculum, my.honours.curriculum)' and hit Enter.
+
+
+
+- Class: text
+  Output: 'You may have noticed that the rows are numbered without ever having
+    specified this numbering. However, would it not be nice to access your 
+    courses by name, just as you can do with the columns? So instead of 
+    my.curriculum[1, ] you could type my.curriculum["Calculus", ]. 
+    This is possible if you give your rows a name using the row.names() function.'
+
+- Class: cmd_question
+  Output: 'Use the row.names() function to name the rows of this dataframe using
+    the course names.'
+  CorrectAnswer: row.names(my.curriculum) <- my.curriculum[, 1]
+  AnswerTests: omnitest(correctExpr = 'row.names(my.curriculum) <- my.curriculum[, 1]')
+  Hint: Hint -- type 'row.names(my.curriculum) <- my.curriculum[, 1]' and hit Enter.
+
+- Class: cmd_question
+  Output: 'Now you have two columns with course names. One is the row.names column 
+    and the other the actual column. Remove the data column "course".'
+  CorrectAnswer: my.curriculum$course <- NULL;
+  AnswerTests: omnitest(correctExpr = 'my.curriculum$course <- NULL')
+  Hint: Hint -- type 'my.curriculum$course <- NULL;' and hit Enter.
+
+- Class: cmd_question
+  Output: 'Of course, these steps are a bit awkward to get to a dataframe with 
+    named rows. This is something you can do using the data.frame constructor.
+    So, re-create a dataframe with named rows using the data.frame() constructor
+    and vectors my.courses, my.grades, and my.teachers, but do NOT assign it to anything.'
+  CorrectAnswer: data.frame(grades = my.grades, teachers = my.teachers, row.names = my.courses)
+  AnswerTests: omnitest(correctExpr = 'data.frame(grade = my.grades, teacher = my.teachers, row.names = my.courses)', correctVal = data.frame(grades = my.grades, teachers = my.teachers, row.names = my.courses))
+  Hint: Hint -- type 'my.curriculum$course <- NULL;' and hit Enter.
 
