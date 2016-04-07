@@ -9,4 +9,76 @@
 
 
 - Class: text
-  Output: It is time to explore .
+  Output: "Let's explore some miscellaneous R functions. In these questions it 
+    is assumed you have the datasets package loaded"
+
+- Class: text
+  Output: The CO2 dataset from the datasets package contains data on CO2 uptake 
+    in plants under different conditions and from different backgrounds.
+
+- Class: cmd_question
+  Output: Fetch (and read) the help page for this dataset
+  CorrectAnswer: help("CO2")
+  AnswerTests: omnitest(correctExpr='help("CO2")')
+  Hint: 'Hint -- type help("CO2") and hit Enter.'
+  
+- Class: cmd_question
+  Output: What are the dimensions of this dataset?
+  CorrectAnswer: dim(CO2)
+  AnswerTests: omnitest(correctExpr='dim(CO2)')
+  Hint: 'Hint -- type "dim(CO2)" and hit Enter.'
+
+- Class: cmd_question
+  Output: What are the column names of this dataset?
+  CorrectAnswer: names(CO2)
+  AnswerTests: omnitest(correctExpr='names(CO2)')
+  Hint: 'Hint -- type "names(CO2)" and hit Enter.'
+
+
+
+- Class: cmd_question
+  Output: 'Produce the 6-number summary for columns conc and uptake of this 
+    dataset.'
+  CorrectAnswer: summary(CO2[, c(4, 5)])
+  AnswerTests: omnitest(correctExpr='summary(CO2[, c(4, 5)])', correctVal = summary(CO2[, c("conc", "uptake")]))
+  Hint: 'Hint -- type "summary(CO2[, c(4, 5)])" or "summary(CO2[, c("conc", "uptake")])" and hit Enter.'
+
+- Class: cmd_question
+  Output: 'What is the standard deviation of CO2 uptake at concentration 1000 mL/L.'
+  CorrectAnswer: sd(CO2[CO2$conc == 1000, "uptake"])
+  AnswerTests: omnitest(correctExpr='sd(CO2[CO2$conc == 1000, "uptake"])')
+  Hint: 'Hint -- type "sd(CO2[CO2$conc == 1000, "uptake"])" and hit Enter. Sorry, testing is somewhat buggy here'
+
+- Class: cmd_question
+  Output: 'What is the value of the 40% quantile? Use a single expression to 
+    report a single number!'
+  CorrectAnswer: quantile(CO2$uptake, probs = seq(0, 1, 0.2))[3]
+  AnswerTests: omnitest(correctExpr='quantile(CO2$uptake, probs = seq(0, 1, 0.2))[3]')
+  Hint: 'Hint -- type "quantile(CO2$uptake, probs = seq(0, 1, 0.2))[3]" or "quantile(CO2$uptake, probs = seq(0, 1, 0.2))["40%"]" and hit Enter.'
+
+- Class: cmd_question
+  Output: 'Produce boxplots for CO2 uptake split on ambient CO2 concentrations'
+  CorrectAnswer: boxplot(uptake ~ conc, data = CO2)
+  AnswerTests: omnitest(correctExpr='boxplot(uptake ~ conc, data = CO2)')
+  Hint: 'Hint -- type "boxplot(uptake ~ conc, data = CO2)" and hit Enter.'
+
+- Class: text
+  Output: The next few questions deal with the dataframe my.curriculum that you
+    will find in your environment.
+  
+
+- Class: cmd_question
+  Output: 'Print the dataframe rows of my.curriculum ordered from high to low grade'
+  CorrectAnswer: my.curriculum[order(my.curriculum$grade, decreasing = TRUE), ]
+  AnswerTests: omnitest(correctExpr='my.curriculum[order(my.curriculum$grade, decreasing = TRUE), ]')
+  Hint: 'Hint -- type "my.curriculum[order(my.curriculum$grade, decreasing = TRUE), ]" and hit Enter.'
+
+- Class: cmd_question
+  Output: 'What is the ordering vector to order the dataframe by teacher and grade (low to high)?'
+  CorrectAnswer: order(my.curriculum$teacher, my.curriculum$grade)
+  AnswerTests: omnitest(correctExpr='order(my.curriculum$teacher, my.curriculum$grade)', correctVal = order(my.curriculum$teacher, my.curriculum$grade))
+  Hint: 'Hint -- type "order(my.curriculum$teacher, my.curriculum$grade)" and hit Enter.'
+
+
+
+

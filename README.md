@@ -8,4 +8,8 @@ This swirl course can be installed and loaded by following these steps:
 - start swirl by typing `swirl()` on the console
 - give a username that you will use during this ENTIRE swirl course
 - When prompted to choose a course, select the course "MichielNoback-R Data Analysis-..."
-- select a lesson. I recommend starting at lesson 1 "1: R Data Analysis"
+- select a lesson. I recommend using this oreder:  
+    - lesson 1 "R_as_calculator"
+    - lesson 2 "Working_with_Vectors"
+    - lesson 3 "Complex_Datatypes"
+    - lesson 4 "Functions"

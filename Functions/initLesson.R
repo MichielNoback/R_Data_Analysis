@@ -1,4 +1,5 @@
-# Code placed in this file fill be executed every time the
-# lesson is started. Any variables created here will show up in
-# the user's working directory and thus be accessible to them
-# throughout the lesson.
+my.curriculum <- data.frame(
+    course = c("Calculus", "Genetics 2", "Biochemistry", "Labwork", "Statistics", "Design Patterns", "Scientific Writing"),
+    grade = c(3.4, 6.8, 5.6, 8.5, 2.4, 8.3, 5.6), 
+    teacher = c("Dr. Nobody", "Prof. Cheatsalot", "Prof. Cheatsalot", "Dr. Nobody", "Dr. Nobody", "Dr. Dre", "Prof. Cheatsalot"))
+
